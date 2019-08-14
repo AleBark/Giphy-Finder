@@ -8,7 +8,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   String _search;
   int _offset;
 
@@ -26,7 +25,6 @@ class _HomePageState extends State<HomePage> {
 
     return json.decode(response.body);
   }
-
 
   @override
   void initState() {
@@ -48,20 +46,63 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.black,
       body: Column(
         children: <Widget>[
-        Padding(
-          padding: EdgeInsets.all(10.0),
-          child:   TextField(
-            decoration: InputDecoration(
-                labelText: "Find the best & newest featured GIFs",
-                labelStyle: TextStyle(color: Colors.white),
-                border: OutlineInputBorder()
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: TextField(
+              decoration: InputDecoration(
+                  labelText: "Find the best & newest featured GIFs",
+                  labelStyle: TextStyle(color: Colors.white),
+                  border: OutlineInputBorder()),
+              style: TextStyle(color: Colors.white, fontSize: 18.0),
+              textAlign: TextAlign.center,
             ),
-            style: TextStyle(color: Colors.white, fontSize: 18.0),
-            textAlign: TextAlign.center,
           ),
-        )
+          Expanded(
+            child: FutureBuilder(
+                future: _getGifs(),
+                builder: (context, snapshot) {
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                    case ConnectionState.none:
+                      return Container(
+                        width: 200.0,
+                        height: 200.0,
+                        alignment: Alignment.center,
+                        child: CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                          strokeWidth: 5.0,
+                        ),
+                      );
+                    default:
+                      if (snapshot.hasError) {
+                        return Container();
+                      } else {
+                        return _createGifTable(context, snapshot);
+                      }
+                  }
+                }),
+          )
         ],
       ),
+    );
+  }
+
+  Widget _createGifTable(BuildContext context, AsyncSnapshot asyncSnapshot) {
+    return GridView.builder(
+      padding: EdgeInsets.all(10.0),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
+      itemCount: asyncSnapshot.data.length,
+      itemBuilder: (context, index) {
+        return GestureDetector(
+          child: Image.network(
+            asyncSnapshot.data["data"][index]["images"]["fixed_height"]["url"],
+            height: 300.0,
+            fit: BoxFit.cover,
+          ),
+        );
+      },
     );
   }
 }

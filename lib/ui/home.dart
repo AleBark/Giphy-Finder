@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.all(10.0),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, crossAxisSpacing: 10.0, mainAxisSpacing: 10.0),
-      itemCount: asyncSnapshot.data.length,
+      itemCount: asyncSnapshot.data["data"].length,
       itemBuilder: (context, index) {
         return GestureDetector(
           child: Image.network(

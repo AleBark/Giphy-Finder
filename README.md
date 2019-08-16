@@ -1,16 +1,16 @@
-# giphy_finder_app
+# Giphy Finder App
 
-A new Flutter application.
+## Description
 
-## Getting Started
+This application was made with the purpose of searching gifs (from giphy website) via API and share them with other apps.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Screenshots:
+<div>
+<img src="https://github.com/AleBark/Giphy-Finder/blob/master/samples/sample_01.png" height="450" width="250px" style="float:left">
+<img src="https://github.com/AleBark/Giphy-Finder/blob/master/samples/sample_02.png" height="450" width="250px" style="float:right">
+</div>
+<br>
+<div>
+<img src="https://github.com/AleBark/Giphy-Finder/blob/master/samples/sample_03.png" height="450" width="250px" style="float:left;">
+<img src="https://github.com/AleBark/Giphy-Finder/blob/master/samples/sample_04.png" height="450" width="250px"  style="float:right">
+</div>
